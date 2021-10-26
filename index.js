@@ -6,7 +6,7 @@ const cors = require('cors');
 require('dotenv').config()
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // middleware
 app.use(cors());
@@ -52,7 +52,7 @@ async function run() {
     //DELETE API
     app.delete('/services/:id', async (req, res) => {
       const id = req.params.id;
-      const query = { _id:objectId(id)};
+      const query = { _id: objectId(id) };
       const result = await servicesCollection.deleteOne(query);
       res.json(result);
     })
